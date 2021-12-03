@@ -9,49 +9,114 @@
   <body>
     <script>
       const gameValues = ["rock", "paper", "scissors"];
+      let computerCounter = 0;
+      let playerCounter = 0;
 
       function computerPlay() {
-        return gameValues[Math.floor(Math.random() * gameValues.length)];
+        console.log(gameValues[Math.floor(Math.random() * gameValues.length)];
       }
 
       let computerSelection = computerPlay();
 
-      const playerSelection = window
-        .prompt("Pick one: Rock, Paper, or Scissors")
-        .toLowerCase();
-
-      console.log(playerSelection);
+      let playerSelection = null;
 
       function playRound(playerSelection, computerSelection) {
+        playerSelection = window
+        .prompt("Pick one: Rock, Paper, or Scissors")
+        .toLowerCase();
         if (computerSelection == "rock" && playerSelection == "scissors") {
-          return "You Lose! Rock beats Scissors";
+          computerCounter += 1;
+          console.log("You Lose! Rock beats Scissors");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (computerSelection == "paper" && playerSelection == "rock") {
-          return "You Lose! Paper beats Rock";
+          computerCounter += 1;
+          console.log("You Lose! Paper beats Rock");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (
           computerSelection == "scissors" &&
           playerSelection == "paper"
         ) {
-          return "You Lose! Scissors beats Paper";
+          computerCounter += 1;
+          console.log("You Lose! Scissors beats Paper");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (
           playerSelection == "scissors" &&
           computerSelection == "paper"
         ) {
-          return "You Win! Scissors beats Paper";
+          playerCounter += 1;
+          console.log("You Win! Scissors beats Paper");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (playerSelection == "paper" && computerSelection == "rock") {
-          return "You Win! Paper beats Rock";
+          playerCounter += 1;
+          console.log("You Win! Paper beats Rock");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (
           playerSelection == "rock" &&
           computerSelection == "scissors"
         ) {
-          return "You Win! Rock beats Scissors";
+          playerCounter += 1;
+          console.log("You Win! Rock beats Scissors");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else if (playerSelection == computerSelection) {
-          return "Draw! Try again";
+          console.log("Draw! Try again");
+          console.log(
+            "The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter
+          );
+          return;
         } else {
-          return "Something went wrong...";
+          console.log("Something went wrong...");
+          return;
         }
       }
+      
+      function game() {
+        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);
+        playRound(playerSelection, computerSelection);
+      }
 
-      console.log(playRound(playerSelection, computerSelection));
+      console.log(game());
     </script>
   </body>
 </html>
