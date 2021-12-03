@@ -1,21 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        const gameValues = ['Rock', 'Paper', 'Scissors'];
+      const gameValues = ["rock", "paper", "scissors"];
 
-        function computerPlay() {
-            let computerSelection = Math.floor(Math.random() * gameValues.length);
-            return computerSelection;
+      function computerPlay() {
+        return gameValues[Math.floor(Math.random() * gameValues.length)];
+      }
+
+      let computerSelection = computerPlay();
+
+      const playerSelection = window
+        .prompt("Pick one: Rock, Paper, or Scissors")
+        .toLowerCase();
+
+      console.log(playerSelection);
+
+      function playRound(playerSelection, computerSelection) {
+        if (computerSelection == "rock" && playerSelection == "scissors") {
+          return "You Lose! Rock beats Scissors";
+        } else if (computerSelection == "paper" && playerSelection == "rock") {
+          return "You Lose! Paper beats Rock";
+        } else if (
+          computerSelection == "scissors" &&
+          playerSelection == "paper"
+        ) {
+          return "You Lose! Scissors beats Paper";
+        } else if (
+          playerSelection == "scissors" &&
+          computerSelection == "paper"
+        ) {
+          return "You Win! Scissors beats Paper";
+        } else if (playerSelection == "paper" && computerSelection == "rock") {
+          return "You Win! Paper beats Rock";
+        } else if (
+          playerSelection == "rock" &&
+          computerSelection == "scissors"
+        ) {
+          return "You Win! Rock beats Scissors";
+        } else if (playerSelection == computerSelection) {
+          return "Draw! Try again";
+        } else {
+          return "Something went wrong...";
         }
+      }
 
-        console.log(computerPlay);
+      console.log(playRound(playerSelection, computerSelection));
     </script>
-</body>
+  </body>
 </html>
