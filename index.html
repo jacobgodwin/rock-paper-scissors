@@ -11,6 +11,7 @@
       const gameValues = ["rock", "paper", "scissors"];
       let computerCounter = 0;
       let playerCounter = 0;
+      let roundStatus = "No one has won a round yet.";
 
       function computerPlay() {
         return gameValues[Math.floor(Math.random() * gameValues.length)];
@@ -18,105 +19,129 @@
 
       let computerSelection = computerPlay();
 
-      let playerSelection = null;
+      let playerSelection = window
+        .prompt(
+          roundStatus + "   The score is Computer: " +
+            computerCounter +
+            " You: " +
+            playerCounter +
+            "    Pick one: Rock, Paper, or Scissors"
+        )
+        .toLowerCase();
 
       function playRound(playerSelection, computerSelection) {
-        playerSelection = window
-        .prompt("Pick one: Rock, Paper, or Scissors")
-        .toLowerCase();
         if (computerSelection == "rock" && playerSelection == "scissors") {
           computerCounter += 1;
-          console.log("You Lose! Rock beats Scissors");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "Computer won that round.";
+          return "You lost that round. Rock beats Scissors";
         } else if (computerSelection == "paper" && playerSelection == "rock") {
           computerCounter += 1;
-          console.log("You Lose! Paper beats Rock");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "Computer won that round.";
+          return "You lost that round. Paper beats Rock";
         } else if (
           computerSelection == "scissors" &&
           playerSelection == "paper"
         ) {
           computerCounter += 1;
-          console.log("You Lose! Scissors beats Paper");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "Computer won that round.";
+          return "You lost that round. Scissors beats Paper";
         } else if (
           playerSelection == "scissors" &&
           computerSelection == "paper"
         ) {
           playerCounter += 1;
-          console.log("You Win! Scissors beats Paper");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "You won that round.";
+          return "You won that round. Scissors beats Paper";
         } else if (playerSelection == "paper" && computerSelection == "rock") {
           playerCounter += 1;
-          console.log("You Win! Paper beats Rock");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "You won that round.";
+          return "You won that round. Paper beats Rock";
         } else if (
           playerSelection == "rock" &&
           computerSelection == "scissors"
         ) {
           playerCounter += 1;
-          console.log("You Win! Rock beats Scissors");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "You won that round.";
+          return "You won that round. Rock beats Scissors";
         } else if (playerSelection == computerSelection) {
-          console.log("Draw! Try again");
-          console.log(
-            "The score is Computer: " +
-            computerCounter +
-            " You: " +
-            playerCounter
-          );
-          return;
+          roundStatus = "It's a draw.";
+          return "Draw! Try again";
         } else {
-          console.log("Something went wrong...");
-          return;
+          return "Something went wrong...";
         }
       }
-      
-      function game() {
-        playRound(playerSelection, computerSelection);
-        playRound(playerSelection, computerSelection);
-        playRound(playerSelection, computerSelection);
-        playRound(playerSelection, computerSelection);
-        playRound(playerSelection, computerSelection);
-      }
 
-      console.log(game());
+      function game() {
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(
+          roundStatus + "   The score is Computer: " + computerCounter + " You: " + playerCounter
+        );
+        computerSelection = computerPlay();
+        playerSelection = window
+          .prompt(
+            roundStatus + "   The score is Computer: " +
+              computerCounter +
+              " You: " +
+              playerCounter +
+              "    Pick one: Rock, Paper, or Scissors"
+          )
+          .toLowerCase();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(
+          roundStatus + "   The score is Computer: " + computerCounter + " You: " + playerCounter
+        );
+        computerSelection = computerPlay();
+        playerSelection = window
+          .prompt(
+            roundStatus + "   The score is Computer: " +
+              computerCounter +
+              " You: " +
+              playerCounter +
+              "    Pick one: Rock, Paper, or Scissors"
+          )
+          .toLowerCase();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(
+          roundStatus + "   The score is Computer: " + computerCounter + " You: " + playerCounter
+        );
+        computerSelection = computerPlay();
+        playerSelection = window
+          .prompt(
+            roundStatus + "   The score is Computer: " +
+              computerCounter +
+              " You: " +
+              playerCounter +
+              "    Pick one: Rock, Paper, or Scissors"
+          )
+          .toLowerCase();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(
+          roundStatus + "   The score is Computer: " + computerCounter + " You: " + playerCounter
+        );
+        computerSelection = computerPlay();
+        playerSelection = window
+          .prompt(
+            roundStatus + "   The score is Computer: " +
+              computerCounter +
+              " You: " +
+              playerCounter +
+              "    Pick one: Rock, Paper, or Scissors"
+          )
+          .toLowerCase();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log(
+          roundStatus + "   The score is Computer: " + computerCounter + " You: " + playerCounter
+        );
+        if (playerCounter > computerCounter) {
+          alert("The score is Computer: " + computerCounter + " You: " + playerCounter + " You won the game!");
+        } else if (computerCounter > playerCounter) {
+          alert("The score is Computer: " + computerCounter + " You: " + playerCounter + " You lost the game.");
+        } else if (computerCounter == playerCounter) {
+          alert("The score is Computer: " + computerCounter + " You: " + playerCounter + " The game is a draw.");
+        } else {
+          alert("Something went wrong...");
+        }
+      }
     </script>
   </body>
 </html>
