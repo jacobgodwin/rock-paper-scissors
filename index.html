@@ -6,20 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js"></script>
   </head>
   <body>
     <div class="container">
-      <div id="results">
-        <p>Score</p>
-        <p>Player:</p>
-        <p>Computer:</p>
+      <div id="score">
+        <p id="results">Make a selection.</p>
+        <p id="player">Player: 0</p>
+        <p id="computer">Computer: 0</p>
       </div>
       <div id="btns">
         <button id="paper">Paper</button>
         <button id="rock">Rock</button>
         <button id="scissors">Scissors</button>
       </div>
+      <div id="rematch"></div>
     </div>
+    <script>
+      const gameValues = ["rock", "paper", "scissors"];
+
+      let computerCounter = 0;
+
+      let playerCounter = 0;
+
+      let roundStatus = "No one has won a round yet.";
+
+      let results = document.querySelector("#results");
+
+      let player = document.querySelector("#player");
+
+      let computer = document.querySelector("#computer");
+
+      let computerSelection = "";
+
+      function computerPlay() {
+        return gameValues[Math.floor(Math.random() * gameValues.length)];
+      }
+
+      let playerSelection = document.querySelectorAll("button");
+
+      playerSelection.forEach((selection) => {
+        selection.addEventListener("click", () => {
+          playerSelection = selection.id;
+          computerSelection = computerPlay();
+          playRound(playerSelection, computerSelection);
+          results.textContent = "Result: " + roundStatus;
+          computer.textContent = "Computer: " + computerCounter;
+          player.textContent = "Player: " + playerCounter;
+          if (computerCounter == 5) {
+            results.textContent = "Computer won.";
+            results.appendChild(rematchBtn);
+            rematchBtn.addEventListener("click", () => {
+              window.location.reload();
+            });
+          } else if (playerCounter == 5) {
+            results.textContent = "You won!";
+            results.appendChild(rematchBtn);
+            rematchBtn.addEventListener("click", () => {
+              window.location.reload();
+            });
+          } else {
+            return;
+          }
+        });
+      });
+
+      const rematchBtn = document.createElement("button");
+
+      rematchBtn.textContent = "Rematch?";
+      rematchBtn.classList.add("rematch");
+
+      function playRound(playerSelection, computerSelection) {
+        if (computerSelection == "rock" && playerSelection == "scissors") {
+          computerCounter += 1;
+          roundStatus = "Computer won that round. Rock beats Scissors.";
+          return;
+        } else if (computerSelection == "paper" && playerSelection == "rock") {
+          computerCounter += 1;
+          roundStatus = "Computer won that round. Paper beats Rock.";
+          return;
+        } else if (
+          computerSelection == "scissors" &&
+          playerSelection == "paper"
+        ) {
+          computerCounter += 1;
+          roundStatus = "Computer won that round. Scissors beats Paper.";
+          return;
+        } else if (
+          playerSelection == "scissors" &&
+          computerSelection == "paper"
+        ) {
+          playerCounter += 1;
+          roundStatus = "You won that round. Scissors beats Paper.";
+          return;
+        } else if (playerSelection == "paper" && computerSelection == "rock") {
+          playerCounter += 1;
+          roundStatus = "You won that round. Paper beats Rock.";
+          return;
+        } else if (
+          playerSelection == "rock" &&
+          computerSelection == "scissors"
+        ) {
+          playerCounter += 1;
+          roundStatus = "You won that round. Rock beats Scissors.";
+          return;
+        } else if (playerSelection == computerSelection) {
+          roundStatus = "It's a draw.";
+          return "Draw! Try again";
+        } else {
+          return "Something went wrong...";
+        }
+      }
+    </script>
   </body>
 </html>
